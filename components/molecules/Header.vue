@@ -20,6 +20,9 @@
       <li>
         <nuxt-link to="/search">search</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/mypage/">マイページ</nuxt-link>
+      </li>
     </ul>
   </header>
 </template>
