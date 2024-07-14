@@ -1,0 +1,13 @@
+// 現在は、これが効いていない
+{
+  "rules": {
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      2
+    ]
+  }
+}

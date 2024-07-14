@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -10,9 +11,16 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      // ENVIRONMENT: process.env.ENVIRONMENT ?? "local",
-      // apiUrl: process.env.NUXT_PUBLIC_API_URL,
+      // ENVIRONMENT: process.env.ENVIRONMENT || "local",
+      // apiUrl: process.env.NUXT_PUBLIC_API_URL || "http://localhost:3000",
+      appName: process.env.APP_NAME,
+
+      // environment=process.env.ENVIRONMENT,
+      // apiUrl=process.env.NUXT_PUBLIC_API_URL
     },
+    // private: {
+    //   apiSecret: process.env.API_SECRET
+    // },
   },
 
   app: {
@@ -26,7 +34,20 @@ export default defineNuxtConfig({
     },
   },
 
-  // css: ['~/assets/scss/main.scss'],
+  build: {
+    transpile: ['vuetify'],
+  },
+
+  modules: [
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        // @ts-expect-error
+        config.plugins.push(vuetify({ autoImport: true }))
+      })
+    },
+  ],
+
+  css: ['~/assets/scss/main.scss'],
   vite: {
     // css: {
     //   preprocessorOptions: {
@@ -35,5 +56,10 @@ export default defineNuxtConfig({
     //     }
     //   }
     // }
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
+    },
   },
 })

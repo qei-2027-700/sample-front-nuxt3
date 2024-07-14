@@ -1,1 +1,12 @@
 // コンポーネントごとのスタイル
+* {
+  margin: 0px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.heading__lv2 {
+  font-size: 2.0rem;
+}

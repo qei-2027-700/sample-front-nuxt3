@@ -1,10 +1,12 @@
-<script setup>
+<script lang="ts" setup>
 </script>
 
 <template>
   <div>
     <MoleculesHeader />
-    <slot />
+    <v-container>
+      <slot />
+    </v-container>
     <MoleculesFooter />
   </div>
 </template>

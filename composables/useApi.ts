@@ -1,13 +1,14 @@
-// composables/useApi.ts
+import { BASE_URL } from "~/constants/config"
 
-export async function useApi(url: string): Promise<any> {
+export const useGetApi = async (url: string): Promise<any> => {
   try {
-    const { data, error }: any = await useFetch(url)
+    const requestUrl = BASE_URL + url
+    const { data, error }: any = await useFetch(requestUrl)
 
     if (!data) {
       throw new Error('Network response was not ok')
     }
-    
+
     return { data, error }
     // return await data
 
@@ -16,3 +17,26 @@ export async function useApi(url: string): Promise<any> {
     throw error
   }
 }
+
+export const usePostApi = async (url: string, postData: any): Promise<any> => {
+  try {
+    // const { data, error }: any = await useFetch(url)
+
+    // `useFetch`だが、POSTもできる
+    const { data, error } = await useFetch(url, {
+      method: 'POST',
+      body: postData,
+    })
+
+    if (!data) {
+      throw new Error('Network response was not ok')
+    }
+
+    return { data, error }
+
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    throw error
+  }
+}
+
