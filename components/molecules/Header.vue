@@ -1,27 +1,15 @@
+<script setup lang="ts">
+import { NAVIGATION_DATA } from '~/constants/config'
+
+</script>
+
 <template>
   <header id="header">
     これはヘッダー
+
     <ul>
-      <li>
-        <!-- <NuxtLink to="/">index</NuxtLink> -->
-        <nuxt-link to="/">index</nuxt-link>
-      </li>
-      <li>
-        <!-- <NuxtLink to="/sample">sample</NuxtLink> -->
-        <nuxt-link to="/sample">sample</nuxt-link>
-      </li>
-      <li>
-        <!-- <NuxtLink to="/corporation">corporation</NuxtLink> -->
-        <nuxt-link to="/corporation">corporation</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/sample-article">article</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/search">search</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/mypage/">マイページ</nuxt-link>
+      <li v-for="(item, index) in NAVIGATION_DATA" :key="index">
+        <nuxt-link :to="`${item.link}`">{{ item.text }}</nuxt-link>
       </li>
     </ul>
   </header>

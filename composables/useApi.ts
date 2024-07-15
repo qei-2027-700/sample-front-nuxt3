@@ -4,10 +4,14 @@ export const useGetApi = async (url: string): Promise<any> => {
   try {
     const requestUrl = BASE_URL + url
     const { data, error }: any = await useFetch(requestUrl)
+    // const { data, error }: any = await $fetch(requestUrl)
+
+    console.log(data)
 
     if (!data) {
       throw new Error('Network response was not ok')
     }
+
 
     return { data, error }
     // return await data
@@ -22,7 +26,6 @@ export const usePostApi = async (url: string, postData: any): Promise<any> => {
   try {
     // const { data, error }: any = await useFetch(url)
 
-    // `useFetch`だが、POSTもできる
     const { data, error } = await useFetch(url, {
       method: 'POST',
       body: postData,
